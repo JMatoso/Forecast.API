@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Forecast.API/Forecast.API.csproj", "Forecast.API/"]
+COPY ["Forecast.API.csproj", "/Forecast.API/"]
 RUN dotnet restore "Forecast.API/Forecast.API.csproj"
 COPY . .
-WORKDIR "/src/Forecast.API"
+WORKDIR "./Forecast.API"
 RUN dotnet build "Forecast.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
